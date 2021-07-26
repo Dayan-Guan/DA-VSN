@@ -1,0 +1,15 @@
+EXP_NAME: davsn_viper2city
+SOURCE: Viper
+DATA_DIRECTORY_SOURCE: ../../data/Viper
+DATA_LIST_SOURCE: ../dataset/Viper_list/train.txt
+NUM_CLASSES: 15
+TRAIN:
+  flow_path_src: ../../data/Estimated_optical_flow_Viper_train
+  DA_METHOD: DAVSN
+  INFO_TARGET: ../dataset/CityscapesSeq_list/info_Viper.json
+  INPUT_SIZE_SOURCE:
+    - 1280
+    - 720
+TEST:
+  MODE: video_best
+  INFO_TARGET: ../dataset/CityscapesSeq_list/info_Viper.json

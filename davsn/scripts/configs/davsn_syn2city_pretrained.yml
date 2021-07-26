@@ -1,0 +1,9 @@
+EXP_NAME: davsn_syn2city_pretrained
+SOURCE: SynthiaSeq
+### train on 12 classes and evaluate on 11 classes
+NUM_CLASSES: 12
+TEST:
+  MODE: video_single
+  RESTORE_FROM:
+    - ../../pretrained_models/davsn_syn2city_pretrained.pth
+  INFO_TARGET: ../dataset/CityscapesSeq_list/info_SynthiaSeq.json

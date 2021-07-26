@@ -1,0 +1,8 @@
+EXP_NAME: davsn_viper2city_pretrained
+SOURCE: Viper
+NUM_CLASSES: 15
+TEST:
+  MODE: video_single
+  RESTORE_FROM:
+    - ../../pretrained_models/davsn_viper2city_pretrained.pth
+  INFO_TARGET: ../dataset/CityscapesSeq_list/info_Viper.json

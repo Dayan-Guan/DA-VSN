@@ -1,0 +1,17 @@
+EXP_NAME: davsn_syn2city
+SOURCE: SynthiaSeq
+DATA_DIRECTORY_SOURCE: ../../data/SynthiaSeq/SEQS-04-DAWN
+DATA_LIST_SOURCE: ../dataset/SynthiaSeq_list/train.txt
+### train on 12 classes and evaluate on 11 classes
+NUM_CLASSES: 12
+TRAIN:
+  flow_path_src: ../../data/Estimated_optical_flow_SynthiaSeq_train
+  DA_METHOD: DAVSN
+  INFO_TARGET: ../dataset/CityscapesSeq_list/info_SynthiaSeq.json
+  SET_SOURCE: train
+  INPUT_SIZE_SOURCE:
+    - 1280
+    - 640
+TEST:
+  MODE: video_best
+  INFO_TARGET: ../dataset/CityscapesSeq_list/info_SynthiaSeq.json
