@@ -1,0 +1,17 @@
+EXP_NAME: davsn_pretrained
+SOURCE: ViperX2
+NUM_CLASSES: 15
+TRAIN:
+  flow_path_src: ../../data/Estimated_optical_flow_VIPER_train
+  DA_METHOD: DAVSN
+  RESTORE_FROM: ../../pretrained_models/DeepLab_resnet_pretrained_imagenet.pth
+  INFO_TARGET: ../dataset/CityscapesSeq_list/info_Viper.json
+  SET_SOURCE: train
+  INPUT_SIZE_SOURCE:
+    - 1280
+    - 720
+TEST:
+  MODE: video_single
+  RESTORE_FROM:
+    - ../../pretrained_models/davsn_pretrained.pth
+  INFO_TARGET: ../dataset/CityscapesSeq_list/info_Viper.json
