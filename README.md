@@ -10,14 +10,18 @@
 ### Paper
 ![](./teaser.jpg)
 
-[Domain Adaptive Video Segmentation via Temporal Consistency Regularization](https://arxiv.org/abs/) [Dayan Guan](https://scholar.google.com/citations?user=9jp9QAsAAAAJ&hl=en), [Jiaxing Huang](https://scholar.google.com/citations?user=czirNcwAAAAJ&hl=en&oi=ao),  [Xiao Aoran](https://scholar.google.com/citations?user=yGKsEpAAAAAJ&hl=en), [Shijian Lu](https://scholar.google.com/citations?user=uYmK-A0AAAAJ&hl=en)  
+[Domain Adaptive Video Segmentation via Temporal Consistency Regularization](https://arxiv.org/abs/2107.11004) [Dayan Guan](https://scholar.google.com/citations?user=9jp9QAsAAAAJ&hl=en), [Jiaxing Huang](https://scholar.google.com/citations?user=czirNcwAAAAJ&hl=en&oi=ao),  [Xiao Aoran](https://scholar.google.com/citations?user=yGKsEpAAAAAJ&hl=en), [Shijian Lu](https://scholar.google.com/citations?user=uYmK-A0AAAAJ&hl=en)  
  School of Computer Science and Engineering, Nanyang Technological University, Singapore  
  International Conference on Computer Vision, 2021.
  
-If you find this code useful for your research, please cite our [paper](https://arxiv.org/abs/):
+If you find this code useful for your research, please cite our [paper](https://arxiv.org/abs/2107.11004):
 
 ```
-@article{
+@article{guan2021domain,
+  title={Domain Adaptive Video Segmentation via Temporal Consistency Regularization},
+  author={Guan, Dayan and Huang, Jiaxing and Xiao, Aoran and Lu, Shijian},
+  journal={arXiv preprint arXiv:2107.11004},
+  year={2021}
 }
 ```
 
@@ -30,7 +34,7 @@ Video semantic segmentation is an essential task for the analysis and understand
 conda create -n DA-VSN python=3.6
 conda activate DA-VSN
 conda install -c menpo opencv
-pip install torch==1.0.0 torchvision==0.2.1
+pip install torch==1.2.0 torchvision==0.4.0
 ```
 
 2. Clone the [ADVENT](https://github.com/valeoai/ADVENT):
@@ -49,19 +53,20 @@ pip install -e ./DA-VSN
 1. Dataset:
 * [Cityscapes-Seq](https://www.cityscapes-dataset.com/)
 ```bash
-DA-VSN/data/Cityscapes/                         % Cityscapes dataset root
-DA-VSN/data/Cityscapes/leftImg8bit_sequence     % leftImg8bit_sequence_trainvaltest
-DA-VSN/data/Cityscapes/gtFine/val               % gtFine_trainvaltest
+DA-VSN/data/Cityscapes/                       % Cityscapes dataset root
+DA-VSN/data/Cityscapes/leftImg8bit_sequence   % leftImg8bit_sequence_trainvaltest
+DA-VSN/data/Cityscapes/gtFine                 % gtFine_trainvaltest
 ```
 
-* [VIPER](https://download.visinf.tu-darmstadt.de/data/from_games/): 
+* [VIPER](https://playing-for-benchmarks.org/download/): 
 ```bash
 DA-VSN/data/VIPER/                         % VIPER dataset root
-DA-VSN/data/VIPER/train_images             % Modality: Images; Frames: *9, *0; Sequences: 00-77; Format: jpg
+DA-VSN/data/VIPER/train_images             % Modality: Images; Frames: *0; Sequences: 00-77; Format: jpg
 DA-VSN/data/VIPER/train_labels             % Modality: Semantic class labels; Frames: *0; Sequences: 00-77; Format: png
+DA-VSN/data/VIPER/train_images_seq         % Modality: Images; Frames: *[2-9]; Sequences: 00-77; Format: jpg
 ```
 
-* [SYNTHIA-Seq]() 
+* [SYNTHIA-Seq](http://synthia-dataset.cvc.uab.cat/SYNTHIA_SEQS/SYNTHIA-SEQS-04-DAWN.rar) 
 ```bash
 DA-VSN/data/SYNTHIA-Seq/                         % SYNTHIA-Seq dataset root
 DA-VSN/data/SYNTHIA-Seq/train_images             % SYNTHIA-SEQS-04-DAWN
@@ -87,16 +92,30 @@ DA-VSN/data/Cityscapes_val_optical_flow_scale512/  % unzip Cityscapes_val_optica
 
 3. Use the [flownet2-pytorch](https://github.com/NVIDIA/flownet2-pytorch) to estimate optical flow
 
-### Evaluation
+### Evaluation on Pretrained Models
+* VIPER → Cityscapes-Seq: 
 ```bash
 cd DA-VSN/davsn/scripts
-CUDA_VISIBLE_DEVICES=2 python test.py --cfg configs/davsn.yml
+python test.py --cfg configs/davsn_viper2city_pretrained.yml
 ```
 
-### Training
+* SYNTHIA-Seq → Cityscapes-Seq: 
+```bash
+python test.py --cfg configs/davsn_syn2city_pretrained.yml
+```
+
+### Training and Testing
+* VIPER → Cityscapes-Seq: 
 ```bash
 cd DA-VSN/davsn/scripts
-CUDA_VISIBLE_DEVICES=2 python train.py --cfg configs/davsn.yml
+python train.py --cfg configs/davsn_viper2city.yml
+python test.py --cfg configs/davsn_viper2city.yml
+```
+
+* SYNTHIA-Seq → Cityscapes-Seq: 
+```bash
+python train.py --cfg configs/davsn_syn2city.yml
+python test.py --cfg configs/davsn_syn2city.yml
 ```
 
 ## Acknowledgements
