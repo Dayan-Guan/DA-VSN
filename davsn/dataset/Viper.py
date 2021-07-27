@@ -13,8 +13,8 @@ class ViperDataSet(BaseDataset):
         self.ignore_ego_vehicle = True
 
     def get_metadata(self, name):
-        img_file = self.root / 'train_images' / name
-        label_file = self.root / 'train_labels' / name.replace('jpg','png')
+        img_file = self.root / 'train/img' / name
+        label_file = self.root / 'train/cls' / name.replace('jpg','png')
         return img_file, label_file
 
     def __getitem__(self, index):
@@ -33,7 +33,7 @@ class ViperDataSet(BaseDataset):
         image = self.preprocess(image)
         frame = int(name.split('/')[-1].replace('.jpg','')[-5:])
         name_kf = name.replace(str(frame).zfill(5) + '.jpg', str(frame - 1).zfill(5) + '.jpg')
-        file_kf = self.root / 'train_images_seq' / name_kf
+        file_kf = self.root / 'train/img' / name_kf
         image_kf = self.get_image(file_kf)
         image_kf = self.preprocess(image_kf.copy())
         return image.copy(), label_copy.copy(), image_kf.copy(), np.array(image.shape), name
