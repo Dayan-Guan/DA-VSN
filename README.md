@@ -60,16 +60,15 @@ DA-VSN/data/Cityscapes/gtFine                 % gtFine_trainvaltest
 
 * [VIPER](https://playing-for-benchmarks.org/download/): 
 ```bash
-DA-VSN/data/Viper/                         % VIPER dataset root
-DA-VSN/data/Viper/train_images             % Modality: Images; Frames: *0; Sequences: 00-77; Format: jpg
-DA-VSN/data/Viper/train_labels             % Modality: Semantic class labels; Frames: *0; Sequences: 00-77; Format: png
-DA-VSN/data/Viper/train_images_seq         % Modality: Images; Frames: *[2-9]; Sequences: 00-77; Format: jpg
+DA-VSN/data/Viper/                            % VIPER dataset root
+DA-VSN/data/Viper/train/img                   % Modality: Images; Frames: *[0-9]; Sequences: 00-77; Format: jpg
+DA-VSN/data/Viper/train/cls                   % Modality: Semantic class labels; Frames: *0; Sequences: 00-77; Format: png
 ```
 
 * [SYNTHIA-Seq](http://synthia-dataset.cvc.uab.cat/SYNTHIA_SEQS/SYNTHIA-SEQS-04-DAWN.rar) 
 ```bash
-DA-VSN/data/SynthiaSeq/                         % SYNTHIA-Seq dataset root
-DA-VSN/data/SynthiaSeq/SEQS-04-DAWN     % SYNTHIA-SEQS-04-DAWN
+DA-VSN/data/SynthiaSeq/                      % SYNTHIA-Seq dataset root
+DA-VSN/data/SynthiaSeq/SEQS-04-DAWN          % SYNTHIA-SEQS-04-DAWN
 ```
 
 2. Pre-trained models:
