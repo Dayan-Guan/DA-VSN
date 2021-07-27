@@ -69,7 +69,7 @@ DA-VSN/data/Viper/train_images_seq         % Modality: Images; Frames: *[2-9]; S
 * [SYNTHIA-Seq](http://synthia-dataset.cvc.uab.cat/SYNTHIA_SEQS/SYNTHIA-SEQS-04-DAWN.rar) 
 ```bash
 DA-VSN/data/SynthiaSeq/                         % SYNTHIA-Seq dataset root
-DA-VSN/data/SynthiaSeq/SYNTHIA-SEQS-04-DAWN     % SYNTHIA-SEQS-04-DAWN
+DA-VSN/data/SynthiaSeq/SEQS-04-DAWN     % SYNTHIA-SEQS-04-DAWN
 ```
 
 2. Pre-trained models:
