@@ -32,8 +32,8 @@ class ViperDataSet(BaseDataset):
             label_copy[label == k] = v
         image = self.preprocess(image)
         frame = int(name.split('/')[-1].replace('.jpg','')[-5:])
-        name1 = name.replace(str(frame).zfill(5) + '.jpg', str(frame - 1).zfill(5) + '.jpg')
-        file1 = self.root / 'train_images_seq' / name1
-        image1 = self.get_image(file1)
-        image1 = self.preprocess(image1.copy())
-        return image.copy(), label_copy.copy(), image1.copy(), np.array(image.shape), name
+        name_kf = name.replace(str(frame).zfill(5) + '.jpg', str(frame - 1).zfill(5) + '.jpg')
+        file_kf = self.root / 'train_images_seq' / name_kf
+        image_kf = self.get_image(file_kf)
+        image_kf = self.preprocess(image_kf.copy())
+        return image.copy(), label_copy.copy(), image_kf.copy(), np.array(image.shape), name

@@ -28,14 +28,14 @@ class CityscapesSeqDataSet(BaseDataset):
         return self.map_vector[input_.astype(np.int64, copy=False)]
 
     def __getitem__(self, index):
-        img_file, label_file, name = self.files[index]
+        img_file, label_file, name_cf = self.files[index]
         label = self.get_labels(label_file)
-        label = self.map_labels(label).copy()
-        image = self.get_image(img_file)
-        image = self.preprocess(image)
-        frame = int(name.split('/')[-1].replace('_leftImg8bit.png','')[-6:])
-        name1 = name.replace(str(frame).zfill(6) + '_leftImg8bit.png', str(frame - 1).zfill(6) + '_leftImg8bit.png')
-        file1 = self.root / 'leftImg8bit_sequence' / self.set / name1
-        image1 = self.get_image(file1)
-        image1 = self.preprocess(image1.copy())
-        return image.copy(), label, image1.copy(), np.array(image.shape), name
+        label_cf = self.map_labels(label).copy()
+        image_cf = self.get_image(img_file)
+        image_cf = self.preprocess(image_cf)
+        frame_cf = int(name_cf.split('/')[-1].replace('_leftImg8bit.png','')[-6:])
+        name_kf = name_cf.replace(str(frame_cf).zfill(6) + '_leftImg8bit.png', str(frame_cf - 1).zfill(6) + '_leftImg8bit.png')
+        file_kf = self.root / 'leftImg8bit_sequence' / self.set / name_kf
+        image_kf = self.get_image(file_kf)
+        image_kf = self.preprocess(image_kf.copy())
+        return image_cf.copy(), label_cf, image_kf.copy(), np.array(image_cf.shape), name_cf

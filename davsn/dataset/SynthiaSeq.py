@@ -26,9 +26,9 @@ class SynthiaSeqDataSet(BaseDataset):
             label_copy[label == k] = v
         image = self.preprocess(image)
         frame = int(name.split('/')[-1].replace('.png',''))
-        name1 = name.replace(str(frame).zfill(6) + '.png', str(frame-1).zfill(6) + '.png')
-        file1 = self.root / 'rgb' / name1
-        image1 = self.get_image(file1)
-        image1 = image1[:-120, :, :]
-        image1 = self.preprocess(image1.copy())
-        return image.copy(), label_copy.copy(), image1.copy(), np.array(image.shape), name
+        name_kf = name.replace(str(frame).zfill(6) + '.png', str(frame-1).zfill(6) + '.png')
+        file_kf = self.root / 'rgb' / name_kf
+        image_kf = self.get_image(file_kf)
+        image_kf = image_kf[:-120, :, :]
+        image_kf = self.preprocess(image_kf.copy())
+        return image.copy(), label_copy.copy(), image_kf.copy(), np.array(image.shape), name
