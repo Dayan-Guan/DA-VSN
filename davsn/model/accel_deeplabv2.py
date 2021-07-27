@@ -144,11 +144,11 @@ class ResNetMulti(nn.Module):
         cf = self.layer2(cf)
         cf = self.layer3(cf)
         if self.multi_level:
-            cf1 = self.layer5(cf)
+            cf_aux = self.layer5(cf)
         else:
-            cf1 = None
-        cf2 = self.layer4(cf)
-        cf2 = self.layer6(cf2)
+            cf_aux = None
+        cf = self.layer4(cf)
+        cf = self.layer6(cf)
         with torch.no_grad():
             kf = self.conv1(kf)
             kf = self.bn1(kf)
@@ -158,36 +158,36 @@ class ResNetMulti(nn.Module):
             kf = self.layer2(kf)
             kf = self.layer3(kf)
             if self.multi_level:
-                kf1 = self.layer5(kf)
+                kf_aux = self.layer5(kf)
             else:
-                kf1 = None
-            kf2 = self.layer4(kf)
-            kf2 = self.layer6(kf2)
-        kf1_cpu = kf1.cpu().numpy()
-        kf2_cpu = kf2.cpu().numpy()
-        interp_flow2cf = nn.Upsample(size=(cf2.shape[-2], cf2.shape[-1]), mode='bilinear', align_corners=True)
-        interp_flow2cf_ratio = cf2.shape[-2] / flow.shape[-2]
+                kf_aux = None
+            kf = self.layer4(kf)
+            kf = self.layer6(kf)
+        kf_aux_cpu = kf_aux.cpu().numpy()
+        kf_cpu = kf.cpu().numpy()
+        interp_flow2cf = nn.Upsample(size=(cf.shape[-2], cf.shape[-1]), mode='bilinear', align_corners=True)
+        interp_flow2cf_ratio = cf.shape[-2] / flow.shape[-2]
         flow_cf = interp_flow2cf(flow) * interp_flow2cf_ratio
         flow_cf = flow_cf.cpu().numpy()
         import numpy as np
-        kf1_rec = np.zeros(cf1.shape)
-        kf2_rec = np.zeros(cf2.shape)
-        rec_positions = np.zeros(cf2.shape)
+        kf_aux_rec = np.zeros(cf_aux.shape)
+        kf_rec = np.zeros(cf.shape)
+        rec_positions = np.zeros(cf.shape)
         for x in range(cf.shape[-1]):
             for y in range(cf.shape[-2]):
                 x_flow = int(round(x + flow_cf[:, 0, y, x][0]))
                 y_flow = int(round(y + flow_cf[:, 1, y, x][0]))
                 if x_flow >= 0 and x_flow < flow_cf.shape[-1] and y_flow >= 0 and y_flow < flow_cf.shape[-2]:
-                    kf1_rec[:, :, y_flow, x_flow] = kf1_cpu[:, :, y_flow, x_flow]
-                    kf2_rec[:, :, y_flow, x_flow] = kf2_cpu[:, :, y_flow, x_flow]
+                    kf_aux_rec[:, :, y_flow, x_flow] = kf_aux_cpu[:, :, y_flow, x_flow]
+                    kf_rec[:, :, y_flow, x_flow] = kf_cpu[:, :, y_flow, x_flow]
                     rec_positions[:, :, y_flow, x_flow] = 1
-        kf1_rec = torch.from_numpy(kf1_rec)
-        kf2_rec = torch.from_numpy(kf2_rec)
+        kf_aux_rec = torch.from_numpy(kf_aux_rec)
+        kf_rec = torch.from_numpy(kf_rec)
         rec_positions = torch.from_numpy(rec_positions)
 
-        pred_aux = self.sf_layer(torch.cat((cf1, (rec_positions*kf1_rec).float().cuda(device)), dim=1))
-        pred = self.sf_layer(torch.cat((cf2, (rec_positions*kf2_rec).float().cuda(device)), dim=1))
-        return pred_aux, pred, cf1, cf2, kf1, kf2
+        pred_aux = self.sf_layer(torch.cat((cf_aux, (rec_positions*kf_aux_rec).float().cuda(device)), dim=1))
+        pred = self.sf_layer(torch.cat((cf, (rec_positions*kf_rec).float().cuda(device)), dim=1))
+        return pred_aux, pred, cf_aux, cf, kf_aux, kf
 
     def get_1x_lr_params_no_scale(self):
         """
