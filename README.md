@@ -1,7 +1,7 @@
 # Domain Adaptive Video Segmentation via Temporal Consistency Regularization
 
 ### Updates
-
+- *08/2021*: check out our domain adaptation for sematic segmentation paper [RDA: Robust Domain Adaptation via Fourier Adversarial Attacking](https://arxiv.org/abs/2106.02874) (accepted to ICCV 2021). This paper presents RDA, a robust domain adaptation technique that introduces adversarial attacking to mitigate overfitting in UDA. [Code avaliable](https://github.com/jxhuang0508/RDA).
 - *06/2021*: check out our domain adaptation for panoptic segmentation paper [Cross-View Regularization for Domain Adaptive Panoptic Segmentation](https://arxiv.org/abs/2103.02584) (accepted to CVPR 2021). We design a domain adaptive panoptic segmentation network that exploits inter-style consistency and inter-task regularization for optimal domain adaptation in panoptic segmentation.[Code avaliable](https://github.com/jxhuang0508/FSDR).
 - *06/2021*: check out our domain generalization paper [FSDR: Frequency Space Domain Randomization for Domain Generalization](https://arxiv.org/abs/2103.02370) (accepted to CVPR 2021). Inspired by the idea of JPEG that converts spatial images into multiple frequency components (FCs), we propose Frequency Space Domain Randomization (FSDR) that randomizes images in frequency space by keeping domain-invariant FCs and randomizing domain-variant FCs only. [Code avaliable](https://github.com/jxhuang0508/CVRN).
 - *06/2021*: check out our domain adapation for sematic segmentation paper [Scale variance minimization for unsupervised domain adaptation in image segmentation](https://www.researchgate.net/publication/347421562_Scale_variance_minimization_for_unsupervised_domain_adaptation_in_image_segmentation)  (accepted to Pattern Recognition 2021). We design a scale variance minimization (DA-VSN) method by enforcing the intra-image semantic structure consistency in the target domain. [Code avaliable](https://github.com/Dayan-Guan/DA-VSN).
@@ -75,7 +75,7 @@ DA-VSN/data/SynthiaSeq/SEQS-04-DAWN          % SYNTHIA-SEQS-04-DAWN
 Download [pre-trained models](https://github.com/Dayan-Guan/DA-VSN/releases/tag/Latest) and put in ```DA-VSN/pretrained_models```
 
 ### Optical Flow Estimation
-* For quick preparation: Download the optical flow estimated from Cityscapes-Seq validation set [here](https://github.com/Dayan-Guan/DA-VSN/releases/tag/Latest) and unzip in ```DA-VSN/pretrained_models```
+* For quick preparation: Download the optical flow estimated from Cityscapes-Seq validation set [here](https://github.com/Dayan-Guan/DA-VSN/releases/tag/Latest) and unzip in ```DA-VSN/data```
 
 1. Clone the [flownet2-pytorch](https://github.com/NVIDIA/flownet2-pytorch):
 ```bash
