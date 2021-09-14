@@ -178,8 +178,8 @@ class ResNetMulti(nn.Module):
                 x_flow = int(round(x + flow_cf[:, 0, y, x][0]))
                 y_flow = int(round(y + flow_cf[:, 1, y, x][0]))
                 if x_flow >= 0 and x_flow < flow_cf.shape[-1] and y_flow >= 0 and y_flow < flow_cf.shape[-2]:
-                    kf_aux_rec[:, :, y_flow, x_flow] = kf_aux_cpu[:, :, y_flow, x_flow]
-                    kf_rec[:, :, y_flow, x_flow] = kf_cpu[:, :, y_flow, x_flow]
+                    kf_aux_rec[:, :, y_flow, x_flow] = kf_aux_cpu[:, :, y, x]
+                    kf_rec[:, :, y_flow, x_flow] = kf_cpu[:, :, y, x]
                     rec_positions[:, :, y_flow, x_flow] = 1
         kf_aux_rec = torch.from_numpy(kf_aux_rec)
         kf_rec = torch.from_numpy(kf_rec)
