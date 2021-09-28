@@ -158,8 +158,8 @@ def train_DAVSN(model, source_loader, target_loader, cfg):
         trg_ent_propagated_aux = np.zeros(trg_ent_cf_aux.shape)
         for x in range(trg_prob_kf.shape[-1]):
             for y in range(trg_prob_kf.shape[-2]):
-                x_flow = int(round(x + trg_flow_interp[:, 0, y, x][0]))
-                y_flow = int(round(y + trg_flow_interp[:, 1, y, x][0]))
+                x_flow = int(round(x - trg_flow_interp[:, 0, y, x][0]))
+                y_flow = int(round(y - trg_flow_interp[:, 1, y, x][0]))
                 if x_flow >= 0 and x_flow < trg_prob_kf.shape[-1] and y_flow >= 0 and y_flow < trg_prob_kf.shape[-2]:
                     trg_prob_propagated[:, :, y_flow, x_flow] = trg_prob_kf[:, :, y, x]
                     trg_prob_propagated_aux[:, :, y_flow, x_flow] = trg_prob_aux_kf[:, :, y, x]
