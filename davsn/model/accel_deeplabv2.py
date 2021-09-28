@@ -42,9 +42,7 @@ class Bottleneck(nn.Module):
             residual = self.downsample(x)
         out += residual
         out = self.relu(out)
-
         return out
-
 
 class ClassifierModule(nn.Module):
     def __init__(self, inplanes, dilation_series, padding_series, num_classes):
@@ -63,7 +61,6 @@ class ClassifierModule(nn.Module):
         for i in range(len(self.conv2d_list) - 1):
             out += self.conv2d_list[i + 1](x)
         return out
-
 
 class ResNetMulti(nn.Module):
     def __init__(self, block, layers, num_classes, multi_level):
@@ -116,24 +113,7 @@ class ResNetMulti(nn.Module):
         self.inplanes = planes * block.expansion
         for i in range(1, blocks):
             layers.append(block(self.inplanes, planes, dilation=dilation))
-
         return nn.Sequential(*layers)
-
-    # def forward(self, x):
-    #     x = self.conv1(x)
-    #     x = self.bn1(x)
-    #     x = self.relu(x)
-    #     x = self.maxpool(x)
-    #     x = self.layer1(x)
-    #     x = self.layer2(x)
-    #     x = self.layer3(x)
-    #     if self.multi_level:
-    #         x1 = self.layer5(x)  # produce segmap 1
-    #     else:
-    #         x1 = None
-    #     x2 = self.layer4(x)
-    #     x2 = self.layer6(x2)  # produce segmap 2
-    #     return x1, x2
 
     def forward(self, cf, kf, flow, device):
         cf = self.conv1(cf)
@@ -175,8 +155,8 @@ class ResNetMulti(nn.Module):
         rec_positions = np.zeros(cf.shape)
         for x in range(cf.shape[-1]):
             for y in range(cf.shape[-2]):
-                x_flow = int(round(x + flow_cf[:, 0, y, x][0]))
-                y_flow = int(round(y + flow_cf[:, 1, y, x][0]))
+                x_flow = int(round(x - flow_cf[:, 0, y, x][0]))
+                y_flow = int(round(y - flow_cf[:, 1, y, x][0]))
                 if x_flow >= 0 and x_flow < flow_cf.shape[-1] and y_flow >= 0 and y_flow < flow_cf.shape[-2]:
                     kf_aux_rec[:, :, y_flow, x_flow] = kf_aux_cpu[:, :, y, x]
                     kf_rec[:, :, y_flow, x_flow] = kf_cpu[:, :, y, x]
@@ -184,6 +164,7 @@ class ResNetMulti(nn.Module):
         kf_aux_rec = torch.from_numpy(kf_aux_rec)
         kf_rec = torch.from_numpy(kf_rec)
         rec_positions = torch.from_numpy(rec_positions)
+
 
         pred_aux = self.sf_layer(torch.cat((cf_aux, (rec_positions*kf_aux_rec).float().cuda(device)), dim=1))
         pred = self.sf_layer(torch.cat((cf, (rec_positions*kf_rec).float().cuda(device)), dim=1))
@@ -197,7 +178,6 @@ class ResNetMulti(nn.Module):
         any batchnorm parameter
         """
         b = []
-
         b.append(self.conv1)
         b.append(self.bn1)
         b.append(self.layer1)
