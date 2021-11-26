@@ -17,10 +17,11 @@
 If you find this code useful for your research, please cite our [paper](https://arxiv.org/abs/2107.11004):
 
 ```
-@article{guan2021domain,
-  title={Domain Adaptive Video Segmentation via Temporal Consistency Regularization},
+@inproceedings{guan2021domain,
+  title={Domain adaptive video segmentation via temporal consistency regularization},
   author={Guan, Dayan and Huang, Jiaxing and Xiao, Aoran and Lu, Shijian},
-  journal={arXiv preprint arXiv:2107.11004},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={8053--8064},
   year={2021}
 }
 ```
