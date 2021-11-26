@@ -10,13 +10,13 @@
 ### Paper
 ![](./teaser.jpg)
 
-[Domain Adaptive Video Segmentation via Temporal Consistency Regularization](https://arxiv.org/abs/2107.11004) 
+[Domain Adaptive Video Segmentation via Temporal Consistency Regularization](https://openaccess.thecvf.com/content/ICCV2021/html/Guan_Domain_Adaptive_Video_Segmentation_via_Temporal_Consistency_Regularization_ICCV_2021_paper.html) 
  
 [Dayan Guan](https://scholar.google.com/citations?user=9jp9QAsAAAAJ&hl=en), [Jiaxing Huang](https://scholar.google.com/citations?user=czirNcwAAAAJ&hl=en&oi=ao),  [Xiao Aoran](https://scholar.google.com/citations?user=yGKsEpAAAAAJ&hl=en), [Shijian Lu](https://scholar.google.com/citations?user=uYmK-A0AAAAJ&hl=en)  
  School of Computer Science and Engineering, Nanyang Technological University, Singapore  
  International Conference on Computer Vision, 2021.
  
-If you find this code useful for your research, please cite our [paper](https://arxiv.org/abs/2107.11004):
+If you find this code useful for your research, please cite our [paper](https://openaccess.thecvf.com/content/ICCV2021/html/Guan_Domain_Adaptive_Video_Segmentation_via_Temporal_Consistency_Regularization_ICCV_2021_paper.html):
 
 ```
 @inproceedings{guan2021domain,
