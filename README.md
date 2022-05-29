@@ -123,4 +123,4 @@ python test.py --cfg configs/davsn_syn2city.yml
 This codebase is heavily borrowed from [ADVENT](https://github.com/valeoai/ADVENT) and [flownet2-pytorch](https://github.com/NVIDIA/flownet2-pytorch).
 
 ## Contact
-If you have any questions, please contact: dayan.guan@ntu.edu.sg
+If you have any questions, please contact: dayan.guan@outlook.com
