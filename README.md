@@ -78,7 +78,9 @@ DA-VSN/data/SynthiaSeq/SEQS-04-DAWN          % SYNTHIA-SEQS-04-DAWN
 Download [pre-trained models](https://github.com/Dayan-Guan/DA-VSN/releases/tag/Latest) and put in ```DA-VSN/pretrained_models```
 
 ### Optical Flow Estimation
-* For quick preparation: Download the optical flow estimated from Cityscapes-Seq validation set [here](https://github.com/Dayan-Guan/DA-VSN/releases/tag/Latest) and unzip in ```DA-VSN/data```
+* For quick preparation: The estimated optical flow can be accessed [here](https://drive.google.com/drive/folders/1i_-yw9rS7-aa7Cn5ilIMbkUKwr1JpUFA?usp=sharing) and unzip in ```DA-VSN/data```
+
+
 
 1. Clone the [flownet2-pytorch](https://github.com/NVIDIA/flownet2-pytorch):
 ```bash
