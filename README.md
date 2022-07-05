@@ -1,7 +1,7 @@
 # Domain Adaptive Video Segmentation via Temporal Consistency Regularization
 
 ### Updates
-- *07/2022*: The code of [TPS](https://github.com/xing0047/TPS) is avaliable. [TPS](https://github.com/xing0047/TPS) is 3x faster than [DA-VSN](https://github.com/Dayan-Guan/DA-VSN) during training and notably surpasses [DA-VSN](https://github.com/Dayan-Guan/DA-VSN) during testing.
+- *07/2022*: The code of [TPS](https://github.com/xing0047/TPS) [ECCV 2022] is avaliable. [TPS](https://github.com/xing0047/TPS) is 3x faster than [DA-VSN](https://github.com/Dayan-Guan/DA-VSN) during training and notably surpasses [DA-VSN](https://github.com/Dayan-Guan/DA-VSN) during testing.
 
 ### Paper
 ![](./teaser.jpg)
