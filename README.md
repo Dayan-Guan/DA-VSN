@@ -2,8 +2,6 @@
 
 ### Updates
 - *07/2022*: The code of [TPS](https://github.com/xing0047/TPS) is avaliable. [TPS](https://github.com/xing0047/TPS) is 3x faster than [DA-VSN](https://github.com/Dayan-Guan/DA-VSN) in training while achieves SOTA in the domain adaptive video segmentation task.
-- 
-- check our domain adaptation for video sematic segmentation paper [RDA: Robust Domain Adaptation via Fourier Adversarial Attacking](https://arxiv.org/abs/2106.02874) (accepted to ICCV 2021). This paper presents RDA, a robust domain adaptation technique that introduces adversarial attacking to mitigate overfitting in UDA. [Code avaliable](https://github.com/jxhuang0508/RDA).
 
 ### Paper
 ![](./teaser.jpg)
